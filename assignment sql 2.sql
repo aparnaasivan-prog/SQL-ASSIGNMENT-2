@@ -69,7 +69,8 @@ INSERT INTO employees (employee_id, employee_name, gender, age, hire_date, desig
 		FROM Employees;
 
 
-#Display age and salary with the specified aliases.
+#Retrieve employees with a salary greater than ₹50000 and hired before 
+2016-01-01. 
 
 		SELECT *
 		FROM Employees
@@ -95,12 +96,13 @@ INSERT INTO employees (employee_id, employee_name, gender, age, hire_date, desig
 		LIMIT 5;
 
 #Sum of salaries in the Finance department
-
-		SELECT SUM(salary) AS Total_Salary
-		FROM Employees as e
-		INNER JOIN Departments  as d
-		ON e.department_id = d.department_id
-		WHERE d.department_name = 'Finance';
+	
+SELECT SUM(salary) AS Total_Salary
+FROM Employees
+WHERE department_id = (
+    SELECT department_id
+    FROM Departments
+    WHERE department_name = 'Finance');
    
 #Minimum age among all employees
 
